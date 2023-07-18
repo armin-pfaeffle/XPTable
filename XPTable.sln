@@ -2,15 +2,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable", "XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable", "src\XPTable\XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "src\UnitTest\UnitTest.csproj", "{F124584F-9340-4129-BA17-4EEA1F3EC51D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Designer", "Designer", "{4A839068-71AB-43C0-B09E-073F4D733731}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A8C9848B-620A-48DE-8731-6F3C669884A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyColumns", "Samples\ManyColumns\ManyColumns.csproj", "{B7D0FD08-2FDF-46D8-888D-9497751A7033}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortTest", "Samples\SortTypeTest\SortTest.csproj", "{0B84DD04-39BB-42BC-8EA9-C927FA250F8F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{F124584F-9340-4129-BA17-4EEA1F3EC51D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColSpan", "Samples\ColSpan\ColSpan.csproj", "{F0A5A4EE-849A-422E-BC13-196FDC868FA9}"
 EndProject
@@ -25,6 +27,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordWrap", "Samples\WordWrap\WordWrap.csproj", "{9334C955-CA5C-40C3-A9C0-D79249E47795}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering", "Samples\Filtering\Filtering.csproj", "{4F9DACEE-F1C0-4099-B345-C381CE83CBBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{A0629E5B-532E-404B-9833-02E5C087E17C}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
