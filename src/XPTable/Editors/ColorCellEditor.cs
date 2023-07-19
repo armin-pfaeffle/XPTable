@@ -1,8 +1,8 @@
 /*
- * Copyright © 2005, Mathew Hall
+ * Copyright Â© 2005, Mathew Hall
  * All rights reserved.
  * 
- * Includes Adobe Color Picker Clone 1 Copyright © 2005 Danny Blanchard 
+ * Includes Adobe Color Picker Clone 1 Copyright Â© 2005 Danny Blanchard 
  * (scrabcakes@gmail.com) which can be found at 
  * http://www.codeproject.com/csharp/adobe_cp_clone_part_1.asp
  *
@@ -2366,7 +2366,7 @@ namespace XPTable.Editors
 						this.m_lbl_Hue_Symbol.Name = "m_lbl_Hue_Symbol";
 						this.m_lbl_Hue_Symbol.Size = new System.Drawing.Size(16, 21);
 						this.m_lbl_Hue_Symbol.TabIndex = 40;
-						this.m_lbl_Hue_Symbol.Text = "°";
+						this.m_lbl_Hue_Symbol.Text = "Â°";
 						// 
 						// m_lbl_Saturation_Symbol
 						// 

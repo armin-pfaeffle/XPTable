@@ -1,4 +1,4 @@
-﻿namespace Filtering
+namespace Filtering
 {
     partial class DemoCustom
     {

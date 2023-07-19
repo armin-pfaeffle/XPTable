@@ -1,4 +1,4 @@
-﻿using Microsoft.DotNet.DesignTools.Editors;
+using Microsoft.DotNet.DesignTools.Editors;
 using Utilities;
 using XPTable.Designer.ClientServerProtocol;
 

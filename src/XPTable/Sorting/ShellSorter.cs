@@ -1,5 +1,5 @@
 /*
- * Copyright © 2005, Mathew Hall
+ * Copyright Â© 2005, Mathew Hall
  * All rights reserved.
  * 
  * Sort algorithm modified from the C# implementation written by Jonathan de Halleux, 

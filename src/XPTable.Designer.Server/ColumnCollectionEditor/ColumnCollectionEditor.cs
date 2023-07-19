@@ -1,4 +1,4 @@
-﻿using Microsoft.DotNet.DesignTools.Editors;
+using Microsoft.DotNet.DesignTools.Editors;
 using System.ComponentModel;
 using Utilities;
 using XPTable.Models;

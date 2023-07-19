@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hall, adambl, adarmus, lanwin, peyn, schoetbi, Jeoffman")]
 [assembly: AssemblyProduct("XPTable")]
-[assembly: AssemblyCopyright("Copyright © 2005, Mathew Hall.  All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright Â© 2005, Mathew Hall.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")] 
 [assembly: CLSCompliant(true)]  

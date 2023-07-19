@@ -1,4 +1,4 @@
-Copyright © 2005, Mathew Hall
+Copyright Â© 2005, Mathew Hall
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
@@ -108,7 +108,7 @@ f.You agree not to use the Work for illegal, immoral or improper purposes, or on
   WARRANTY OF TITLE OR NON-INFRINGEMENT, OR THAT THE WORK (OR ANY PORTION THEREOF) IS CORRECT, USEFUL, BUG-FREE OR FREE OF VIRUSES. YOU 
   MUST PASS THIS DISCLAIMER ON WHENEVER YOU DISTRIBUTE THE WORK OR DERIVATIVE WORKS. 
 7.Indemnity. You agree to defend, indemnify and hold harmless the Author and the Publisher from and against any claims, suits, losses, 
-  damages, liabilities, costs, and expenses (including reasonable legal or attorneys’ fees) resulting from or relating to any use of the 
+  damages, liabilities, costs, and expenses (including reasonable legal or attorneysâ€™ fees) resulting from or relating to any use of the 
   Work by You. 
 8.Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE LAW, IN NO EVENT WILL THE AUTHOR OR THE PUBLISHER BE LIABLE TO 
   YOU ON ANY LEGAL THEORY FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF THIS LICENSE OR THE 

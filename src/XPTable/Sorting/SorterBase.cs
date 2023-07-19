@@ -1,5 +1,5 @@
 /*
- * Copyright © 2005, Mathew Hall
+ * Copyright Â© 2005, Mathew Hall
  * All rights reserved.
  * 
  * Modified from the C# implementation written by Jonathan de Halleux, Marc Clifton, 

@@ -1,4 +1,4 @@
-﻿namespace UnitTest
+namespace UnitTest
 {
     using System.Globalization;
 

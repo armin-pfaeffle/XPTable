@@ -1,4 +1,4 @@
-﻿using Microsoft.DotNet.DesignTools.Client.Proxies;
+using Microsoft.DotNet.DesignTools.Client.Proxies;
 using System;
 using System.Collections;
 using System.Windows.Forms;

@@ -1,4 +1,4 @@
-﻿namespace XPTable.Designer.ClientServerProtocol;
+namespace XPTable.Designer.ClientServerProtocol;
 
 public class CollectionEditorNames
 {

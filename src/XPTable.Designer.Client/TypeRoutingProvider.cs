@@ -1,4 +1,4 @@
-﻿using Microsoft.DotNet.DesignTools.Client.TypeRouting;
+using Microsoft.DotNet.DesignTools.Client.TypeRouting;
 using System.Collections.Generic;
 using Utilities;
 using XPTable.Designer.Client.TypeEditors;

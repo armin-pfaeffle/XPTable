@@ -1,4 +1,4 @@
-﻿namespace Utilities;
+namespace Utilities;
 
 public static class Logger
 {
