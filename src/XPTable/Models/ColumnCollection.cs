@@ -25,8 +25,7 @@
  */
 
 
-using System;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 using XPTable.Events;
 
@@ -36,7 +35,7 @@ namespace XPTable.Models
 	/// <summary>
 	/// Represents a collection of Column objects
 	/// </summary>
-	public class ColumnCollection : CollectionBase
+	public class ColumnCollection : Collection<Column>
 	{
 		#region Class Data
 		/// <summary>

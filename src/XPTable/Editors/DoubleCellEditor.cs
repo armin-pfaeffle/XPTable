@@ -33,6 +33,7 @@ using XPTable.Events;
 using XPTable.Models;
 using XPTable.Renderers;
 using XPTable.Win32;
+using System.Windows.Forms;
 
 namespace XPTable.Editors
 {

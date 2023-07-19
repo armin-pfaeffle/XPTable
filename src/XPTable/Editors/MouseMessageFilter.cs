@@ -87,8 +87,8 @@ namespace XPTable.Editors
 				(m.Msg >= (int) WindowMessage.WM_NCMOUSEMOVE && m.Msg <= (int) WindowMessage.WM_NCXBUTTONUP))
 			{
 				// try to get the target control
-				UIPermission uiPermission = new UIPermission(UIPermissionWindow.AllWindows);
-				uiPermission.Demand();
+				// UIPermission uiPermission = new UIPermission(UIPermissionWindow.AllWindows);
+				// uiPermission.Demand();
 				Control target = Control.FromChildHandle(m.HWnd);
 
 				return this.Client.ProcessMouseMessage(target, (WindowMessage) m.Msg, m.WParam.ToInt64(), m.LParam.ToInt64());

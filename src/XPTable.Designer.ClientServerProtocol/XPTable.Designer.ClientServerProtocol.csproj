@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-windows;net7.0-windows;net48</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseDesignerSdk>true</UseDesignerSdk>
+        <PackageId>XPTable.Designer.ClientServerProtocol</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="XPTableCore.Designer.Client"/>
+        <InternalsVisibleTo Include="XPTableCore.Designer.Server"/>
+    </ItemGroup>
+
+    <!-- Fix build problem with net48 and ImplicitUsings = enabled (CS0234) -->
+    <ItemGroup Condition="$(TargetFrameworks.Contains('net48'))">
+        <Using Remove="System.Net.Http"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,92 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TFmWinVer>7.0</TFmWinVer>
+        <NugetTFm>net6.0-windows$(TFmWinVer);net7.0-windows$(TFmWinVer)</NugetTFm>
+        <MajorVer>1</MajorVer>
+        <MinorPatchVer>0</MinorPatchVer>
+        <PRVer>0</PRVer>
+        <TargetFrameworkClient>net48</TargetFrameworkClient>
+        <RootNamespace>XPTable.Package</RootNamespace>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <TargetFrameworks>$(NugetTFm)</TargetFrameworks>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+        <RunPostBuildEvent>Always</RunPostBuildEvent>
+        <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_GetFilesToPackage</TargetsForTfmSpecificContentInPackage>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Description>Description</Description>
+        <!--        <RepositoryUrl>https://github.com/kirsan31/winforms-datavisualization</RepositoryUrl>-->
+        <!--        <PackageProjectUrl>https://github.com/kirsan31/winforms-datavisualization</PackageProjectUrl>-->
+        <!--        <PackageIcon>Icon.png</PackageIcon>-->
+        <!--        <PackageReadmeFile>NuGetReadme.md</PackageReadmeFile>-->
+        <authors>TODO</authors>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>TODO</PackageTags>
+        <PackageLicenseExpression>TODO</PackageLicenseExpression>
+        <PackageReleaseNotes>$(NugetReleaseNotes)</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <PackageId>XPTable.Debug</PackageId>
+        <PackageVersion>$([System.DateTime]::UtcNow.ToString("$(MajorVer).yM.dHHmm"))</PackageVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <PackageId>XPTable</PackageId>
+        <PackageVersion>$(MajorVer).$(MinorPatchVer)$(PRVer)</PackageVersion>
+    </PropertyGroup>
+
+    <!--    <ItemGroup>-->
+    <!--        <None Include="$(SolutionDir)Icon.png" Pack="true" Visible="false" PackagePath="" />-->
+    <!--        <None Include="$(SolutionDir)NuGetReadme.md" Pack="true" Visible="false" PackagePath="" />-->
+    <!--    </ItemGroup>-->
+
+    <Target Name="PreBuildClean" BeforeTargets="BeforeBuild">
+        <Message Text="### Start clean before build..." Importance="high" />
+        <CallTarget Targets="Clean" />
+        <Message Text="### Finished clean before build." Importance="high" />
+    </Target>
+
+    <Target Name="_GetFilesToPackage">
+        <ItemGroup>
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.dll" />
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" />
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.pdb" />
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.pdb" />
+            <!--            <_File Include="$(SolutionDir)\src\System.Windows.Forms.DataVisualization\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\WinForms.DataVisualization.xml" />-->
+            <!--            <_File Include="$(SolutionDir)\src\System.Windows.Forms.DataVisualization\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\WinForms.DataVisualization.Utilities.xml" />-->
+
+            <_File Include="$(SolutionDir)\XPTable.Designer.Client\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.Client.dll" TargetDir="Design/WinForms" />
+            <_File Include="$(SolutionDir)\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms" />
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" TargetDir="Design/WinForms" />
+
+            <_File Include="$(SolutionDir)\XPTable.Designer.Server\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.Designer.Server.dll" TargetDir="Design/WinForms/Server" />
+            <_File Include="$(SolutionDir)\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms/Server" />
+            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" TargetDir="Design/WinForms/Server" />
+        </ItemGroup>
+
+        <ItemGroup>
+            <TfmSpecificPackageFile Include="@(_File)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(_File.TargetDir)" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="CopyPackageRelease" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
+        <Message Text="### Start copy package..." Importance="high" />
+        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\" />
+        <Message Text="### Finished copy package." Importance="high" />
+    </Target>
+
+    <Target Name="CopyPackageDebug" AfterTargets="Pack" Condition="'$(Configuration)'=='Debug'">
+        <Message Text="### Start copy package..." Importance="high" />
+        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\" />
+        <Message Text="### Finished copy package. Start restore..." Importance="high" />
+<!--        <Exec Command="nuget.exe restore &quot;$(SolutionDir)DesignerTest\DesignerTest.csproj&quot; -ConfigFile &quot;$(SolutionDir)NuGet.config&quot;"/>-->
+        <Message Text="### Finished restore." Importance="high" />
+    </Target>
+</Project>

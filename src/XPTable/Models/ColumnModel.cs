@@ -614,11 +614,13 @@ namespace XPTable.Models
         [Category("Behavior"),
         Description("Column Collection"),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-        Editor(typeof(ColumnCollectionEditor), typeof(System.Drawing.Design.UITypeEditor))]
+		Editor("ColumnCollectionEditor", typeof(System.Drawing.Design.UITypeEditor))]
         public ColumnCollection Columns
         {
             get
-            {
+			{
+				Logger.Log( "Call Columns property" );
+				
                 if (this.columns == null)
                     this.columns = new ColumnCollection(this);
                 

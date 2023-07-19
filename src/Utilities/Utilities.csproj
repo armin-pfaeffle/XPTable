@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net7.0;net48</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <!-- Fix build problem with net48 and ImplicitUsings = enabled (CS0234) -->
+    <ItemGroup Condition="$(TargetFrameworks.Contains('net48'))">
+        <Using Remove="System.Net.Http"/>
+    </ItemGroup>
+
+</Project>

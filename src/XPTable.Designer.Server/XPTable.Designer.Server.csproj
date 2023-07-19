@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-windows;net7.0-windows</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseDesignerSdk>true</UseDesignerSdk>
+        <PackageId>XPTable.Designer.Server</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\XPTable\XPTable.csproj"/>
+        <ProjectReference Include="..\XPTable.Designer.ClientServerProtocol\XPTable.Designer.ClientServerProtocol.csproj"/>
+        <ProjectReference Include="..\Utilities\Utilities.csproj"/>
+    </ItemGroup>
+
+</Project>

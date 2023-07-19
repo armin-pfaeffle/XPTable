@@ -41,7 +41,7 @@ namespace XPTable.Models
     /// </summary>
     [DesignTimeVisible(false),
     ToolboxItem(false)]
-    public abstract class Column : Component
+    public abstract class Column : IDisposable
     {
         #region Event Handlers
         /// <summary>
@@ -1008,5 +1008,11 @@ namespace XPTable.Models
             }
         }
         #endregion
-    }
+		public void Dispose()
+		{
+			image.Dispose( );
+			columnModel.Dispose( );
+			renderer.Dispose( );
+		}
+	}
 }

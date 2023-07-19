@@ -29,57 +29,56 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-
 using XPTable;
 
 
 namespace XPTable.Models
 {
-	/// <summary>
-	/// A specialized ContextMenu for Column Headers
-	/// </summary>
-	[ToolboxItem(false)]
-	public class HeaderContextMenu : ContextMenu
-	{
-		#region Class Data
-		
-		/// <summary>
-		/// The ColumnModel that owns the menu
-		/// </summary>
-		private ColumnModel model;
+    /// <summary>
+    /// A specialized ContextMenu for Column Headers
+    /// </summary>
+    [ToolboxItem( false )]
+    public class HeaderContextMenu : ContextMenuStrip
+    {
+        #region Class Data
 
-		/// <summary>
-		/// Specifies whether the menu is enabled
-		/// </summary>
-		private bool enabled;
+        /// <summary>
+        /// The ColumnModel that owns the menu
+        /// </summary>
+        private ColumnModel model;
 
-		/// <summary>
-		/// More columns menuitem
-		/// </summary>
-		private MenuItem moreMenuItem;
+        /// <summary>
+        /// Specifies whether the menu is enabled
+        /// </summary>
+        private bool enabled;
 
-		/// <summary>
-		/// Seperator menuitem
-		/// </summary>
-		private MenuItem separator;
+        /// <summary>
+        /// More columns menuitem
+        /// </summary>
+        private ToolStripMenuItem moreMenuItem;
 
-		#endregion
+        /// <summary>
+        /// Seperator menuitem
+        /// </summary>
+        private ToolStripMenuItem separator;
 
-        
-		#region Constructor
-		
-		/// <summary>
-		/// Initializes a new instance of the HeaderContextMenu class with 
-		/// no menu items specified
-		/// </summary>
-		public HeaderContextMenu() : base()
-		{
-			this.model = null;
-			this.enabled = true;
+        #endregion
 
-			this.moreMenuItem = new MenuItem("More...", new EventHandler(moreMenuItem_Click));
-			this.separator = new MenuItem("-");
-		}
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the HeaderContextMenu class with 
+        /// no menu items specified
+        /// </summary>
+        public HeaderContextMenu() : base( )
+        {
+            this.model = null;
+            this.enabled = true;
+
+            this.moreMenuItem = new ToolStripMenuItem( "More...", null, new EventHandler( moreMenuItem_Click ) );
+            this.separator = new ToolStripMenuItem( "-" );
+        }
 
 		#endregion
 
@@ -115,76 +114,72 @@ namespace XPTable.Models
 			//
 			this.model = ((Table) control).ColumnModel;
 
-			//
-			this.MenuItems.Clear();
+            //
+            this.Items.Clear( );
 
-			base.Show(control, pos);
-		}
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		internal bool Enabled
-		{
-			get
-			{
-				return this.enabled;
-			}
-
-			set
-			{
-				this.enabled = value;
-			}
-		}
-
-		#endregion
+            base.Show( control, pos );
+        }
 
 
-		#region Events
+        /// <summary>
+        /// 
+        /// </summary>
+        internal bool Enabled
+        {
+            get { return this.enabled; }
 
-		/// <summary>
-		/// Raises the Popup event
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data</param>
-		protected override void OnPopup(EventArgs e)
-		{
-			if (this.model.Columns.Count > 0)
-			{
-				MenuItem item;
-				
-				for (int i=0; i<this.model.Columns.Count; i++)
-				{
-					if (i == 10)
-					{
-						this.MenuItems.Add(this.separator);
-						this.MenuItems.Add(this.moreMenuItem);
+            set { this.enabled = value; }
+        }
 
-						break;
-					}
-
-					item = new MenuItem(this.model.Columns[i].Text, new EventHandler(menuItem_Click));
-					item.Checked = this.model.Columns[i].Visible;
-
-					this.MenuItems.Add(item);
-				}
-			}
-
-			base.OnPopup(e);
-		}
+        #endregion
 
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void menuItem_Click(object sender, EventArgs e)
-		{
-			MenuItem item = (MenuItem) sender;
-			
-			this.model.Columns[item.Index].Visible = !item.Checked;
-		}
+        #region Events
+
+        /// <summary>
+        /// Raises the Popup event
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data</param>
+        protected override void OnOpening(CancelEventArgs e)
+        {
+            if ( this.model.Columns.Count > 0 )
+            {
+                ToolStripMenuItem item;
+
+                for ( int i = 0; i < this.model.Columns.Count; i++ )
+                {
+                    if ( i == 10 )
+                    {
+                        this.Items.Add( this.separator );
+                        this.Items.Add( this.moreMenuItem );
+
+                        break;
+                    }
+
+                    item = new ToolStripMenuItem( this.model.Columns[i].Text, null, new EventHandler( menuItem_Click ) );
+                    item.Checked = this.model.Columns[i].Visible;
+
+                    this.Items.Add( item );
+                }
+            }
+
+            base.OnOpening( e );
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItem_Click( object sender, EventArgs e )
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem) sender;
+
+            // TODO: Check!
+            //this.model.Columns[(item.OwnerItem as ToolStripMenuItem).DropDownItems.IndexOf(item)].Visible = !item.Checked;
+            this.model.Columns[ContextMenuStrip.Items.IndexOf(item)].Visible = !item.Checked;	
+        }
 
 
 		/// <summary>
