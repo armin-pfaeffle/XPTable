@@ -6,42 +6,49 @@
         <Nullable>enable</Nullable>
         <UseWindowsForms>true</UseWindowsForms>
         <Version>1.6.1</Version>
+        <AssemblyVersion>1.6.1</AssemblyVersion>
         <AssemblyName>XPTable</AssemblyName>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>XPTable.snk</AssemblyOriginatorKeyFile>
         <DocumentationFile>XPTable.xml</DocumentationFile>
+        
+        <Product>XPTable</Product>
+        <Description>A fully customizable ListView style control based on Java's JTable</Description>
+        <Company>Hall, adambl, adarmus, lanwin, peyn, schoetbi, Jeoffman</Company>
+        <Copyright>Copyright © 2005, Mathew Hall.  All rights reserved.</Copyright>
+        <InformationalVersion>git:95265a3</InformationalVersion>        
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="gitStatus.txt"/>
-        <None Remove="Models\ColumnModel.bmp"/>
-        <None Remove="Models\Table.bmp"/>
-        <None Remove="Models\TableModel.bmp"/>
-        <None Remove="Resources\XPTable32x32.png"/>
-        <None Remove="obj\**"/>
+        <None Remove="gitStatus.txt" />
+        <None Remove="Models\ColumnModel.bmp" />
+        <None Remove="Models\Table.bmp" />
+        <None Remove="Models\TableModel.bmp" />
+        <None Remove="Resources\XPTable32x32.png" />
+        <None Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="Resources\XPTable32x32.png"/>
+        <Content Include="Resources\XPTable32x32.png" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Models\ColumnModel.bmp"/>
-        <EmbeddedResource Include="Models\Table.bmp"/>
-        <EmbeddedResource Include="Models\TableModel.bmp"/>
-        <EmbeddedResource Remove="obj\**"/>
+        <EmbeddedResource Include="Models\ColumnModel.bmp" />
+        <EmbeddedResource Include="Models\Table.bmp" />
+        <EmbeddedResource Include="Models\TableModel.bmp" />
+        <EmbeddedResource Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0"/>
+        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Utilities\Utilities.csproj"/>
+        <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec Command="$(ProjectDir)createGitStatus.bat $(ProjectDir)\gitStatus.txt $(ProjectDir)\AssemblyInfo.githash.cs"/>
+        <Exec Command="$(ProjectDir)createGitStatus.bat $(ProjectDir)\gitStatus.txt $(ProjectDir)\AssemblyInfo.githash.cs" />
     </Target>
 
 </Project>
