@@ -1,16 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TFmWinVer>7.0</TFmWinVer>
-        <NugetTFm>net6.0-windows$(TFmWinVer);net7.0-windows$(TFmWinVer)</NugetTFm>
+        <!--        TODO: Is there a min windows version? -->
+        <!--        <TFmWinVer>7.0</TFmWinVer>-->
+        <!--        <NugetTFm>net6.0-windows$(TFmWinVer);net7.0-windows$(TFmWinVer)</NugetTFm>-->
+
+        <TargetFrameworkPlatformVersion>7.0</TargetFrameworkPlatformVersion>
+        <NugetTargetFrameworks>net6.0-windows$(TargetFrameworkPlatformVersion);net7.0-windows$(TargetFrameworkPlatformVersion)</NugetTargetFrameworks>
+        <TargetFrameworkClient>net472</TargetFrameworkClient>
         <MajorVer>1</MajorVer>
         <MinorPatchVer>0</MinorPatchVer>
         <PRVer>0</PRVer>
-        <TargetFrameworkClient>net48</TargetFrameworkClient>
-        <RootNamespace>XPTable.Package</RootNamespace>
     </PropertyGroup>
-    
+
     <PropertyGroup>
-        <TargetFrameworks>$(NugetTFm)</TargetFrameworks>
+        <TargetFrameworks>$(NugetTargetFrameworks)</TargetFrameworks>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -48,45 +51,53 @@
     <!--    </ItemGroup>-->
 
     <Target Name="PreBuildClean" BeforeTargets="BeforeBuild">
-        <Message Text="### Start clean before build..." Importance="high" />
-        <CallTarget Targets="Clean" />
-        <Message Text="### Finished clean before build." Importance="high" />
+        <Message Text="### Start clean before build..." Importance="high"/>
+        <CallTarget Targets="Clean"/>
+        <Message Text="### Finished clean before build." Importance="high"/>
     </Target>
 
     <Target Name="_GetFilesToPackage">
+        <PropertyGroup>
+            <XPTableBinDirectory>$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TargetFrameworkPlatformVersion)))))</XPTableBinDirectory>
+
+            <!-- Note that TargetFrameworkClient is used here instead of TargetFramework! -->
+            <XPTableDesignerClientBinDirectory>$(SolutionDir)\src\XPTable.Designer.Client\bin\$(Configuration)\$(TargetFrameworkClient)</XPTableDesignerClientBinDirectory>
+            <XPTableDesignerClientServerProtocolForClientBinDirectory>$(SolutionDir)\src\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFrameworkClient)</XPTableDesignerClientServerProtocolForClientBinDirectory>
+
+            <XPTableDesignerServerBinDirectory>$(SolutionDir)\src\XPTable.Designer.Server\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TargetFrameworkPlatformVersion)))))</XPTableDesignerServerBinDirectory>
+            <XPTableDesignerClientServerProtocolForServerBinDirectory>$(SolutionDir)\src\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TargetFrameworkPlatformVersion)))))</XPTableDesignerClientServerProtocolForServerBinDirectory>
+        </PropertyGroup>
         <ItemGroup>
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.dll" />
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" />
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.pdb" />
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.pdb" />
-            <!--            <_File Include="$(SolutionDir)\src\System.Windows.Forms.DataVisualization\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\WinForms.DataVisualization.xml" />-->
-            <!--            <_File Include="$(SolutionDir)\src\System.Windows.Forms.DataVisualization\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\WinForms.DataVisualization.Utilities.xml" />-->
+            <!-- XPTable + XPTable.Utilities -->
+            <_File Include="$(XPTableBinDirectory)\XPTable.dll"/>
+            <!-- TODO: pdb Files only in Debug??? -->
+            <_File Include="$(XPTableBinDirectory)\XPTable.pdb"/>
+            <_File Include="$(XPTableBinDirectory)\XPTable.xml"/>
 
-            <_File Include="$(SolutionDir)\XPTable.Designer.Client\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.Client.dll" TargetDir="Design/WinForms" />
-            <_File Include="$(SolutionDir)\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms" />
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" TargetDir="Design/WinForms" />
+            <_File Include="$(XPTableDesignerClientBinDirectory)\XPTable.Designer.Client.dll" TargetDir="Design/WinForms"/>
+            <_File Include="$(XPTableDesignerClientServerProtocolForClientBinDirectory)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms"/>
 
-            <_File Include="$(SolutionDir)\XPTable.Designer.Server\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\XPTable.Designer.Server.dll" TargetDir="Design/WinForms/Server" />
-            <_File Include="$(SolutionDir)\XPTable.Designer.ClientServerProtocol\bin\$(Configuration)\$(TargetFrameworkClient)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms/Server" />
-            <_File Include="$(SolutionDir)\src\XPTable\bin\$(Configuration)\$(TargetFramework.Substring(0, $(TargetFramework.LastIndexOf($(TFmWinVer)))))\Utilities.dll" TargetDir="Design/WinForms/Server" />
+            <_File Include="$(XPTableDesignerServerBinDirectory)\XPTable.Designer.Server.dll" TargetDir="Design/WinForms/Server"/>
+            <_File Include="$(XPTableDesignerClientServerProtocolForServerBinDirectory)\XPTable.Designer.ClientServerProtocol.dll" TargetDir="Design/WinForms/Server"/>
         </ItemGroup>
 
         <ItemGroup>
-            <TfmSpecificPackageFile Include="@(_File)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(_File.TargetDir)" />
+            <TfmSpecificPackageFile Include="@(_File)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(_File.TargetDir)"/>
         </ItemGroup>
     </Target>
 
     <Target Name="CopyPackageRelease" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
-        <Message Text="### Start copy package..." Importance="high" />
-        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\" />
-        <Message Text="### Finished copy package." Importance="high" />
+        <Message Text="### Start copy package..." Importance="high"/>
+        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\"/>
+        <Message Text="### Finished copy package." Importance="high"/>
     </Target>
 
     <Target Name="CopyPackageDebug" AfterTargets="Pack" Condition="'$(Configuration)'=='Debug'">
-        <Message Text="### Start copy package..." Importance="high" />
-        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\" />
-        <Message Text="### Finished copy package. Start restore..." Importance="high" />
-<!--        <Exec Command="nuget.exe restore &quot;$(SolutionDir)DesignerTest\DesignerTest.csproj&quot; -ConfigFile &quot;$(SolutionDir)NuGet.config&quot;"/>-->
-        <Message Text="### Finished restore." Importance="high" />
+        <Message Text="### Start copy package..." Importance="high"/>
+        <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)NuGet\BuildOut\"/>
+        <Message Text="### Finished copy package. Start restore..." Importance="high"/>
+        <!-- TODO: Restore of test & other packages -->
+        <!--        <Exec Command="nuget.exe restore &quot;$(SolutionDir)DesignerTest\DesignerTest.csproj&quot; -ConfigFile &quot;$(SolutionDir)NuGet.config&quot;"/>-->
+        <Message Text="### Finished restore." Importance="high"/>
     </Target>
 </Project>

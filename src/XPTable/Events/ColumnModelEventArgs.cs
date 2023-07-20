@@ -62,7 +62,7 @@ namespace XPTable.Events
 		/// <summary>
 		/// The affected Column
 		/// </summary>
-		private Column column;
+		private Column? column;
 
 		/// <summary>
 		/// The start index of the affected Column(s)
@@ -87,7 +87,7 @@ namespace XPTable.Events
 		/// <param name="column">The affected Column</param>
 		/// <param name="fromIndex">The start index of the affected Column(s)</param>
 		/// <param name="toIndex">The end index of the affected Column(s)</param>
-		public ColumnModelEventArgs(ColumnModel source, Column column, int fromIndex, int toIndex) : base()
+		public ColumnModelEventArgs(ColumnModel source, Column? column, int fromIndex, int toIndex)
 		{
 			this.source = source;
 			this.column = column;

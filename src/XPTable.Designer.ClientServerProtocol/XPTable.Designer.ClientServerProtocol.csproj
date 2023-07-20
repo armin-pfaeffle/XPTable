@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0-windows;net7.0-windows;net48</TargetFrameworks>
+        <TargetFrameworks>net6.0-windows;net7.0-windows;net472</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -19,8 +19,8 @@
         <InternalsVisibleTo Include="XPTableCore.Designer.Server"/>
     </ItemGroup>
 
-    <!-- Fix build problem with net48 and ImplicitUsings = enabled (CS0234) -->
-    <ItemGroup Condition="$(TargetFrameworks.Contains('net48'))">
+    <!-- Fix build problem with net472 and ImplicitUsings = enabled (CS0234) -->
+    <ItemGroup Condition="$(TargetFrameworks.Contains('net472'))">
         <Using Remove="System.Net.Http"/>
     </ItemGroup>
 

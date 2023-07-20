@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable", "src\XPTable\XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPTable", "src\XPTable\XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "src\UnitTest\UnitTest.csproj", "{F124584F-9340-4129-BA17-4EEA1F3EC51D}"
 EndProject
@@ -33,17 +33,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable.Designer.Client", "src\XPTable.Designer.Client\XPTable.Designer.Client.csproj", "{6930CC70-AF27-4860-AAF3-D6A20CC5399B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPTable.Designer.Client", "src\XPTable.Designer.Client\XPTable.Designer.Client.csproj", "{6930CC70-AF27-4860-AAF3-D6A20CC5399B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable.Designer.ClientServerProtocol", "src\XPTable.Designer.ClientServerProtocol\XPTable.Designer.ClientServerProtocol.csproj", "{79867F90-C7AC-4AB8-8E61-7A6DAEF668C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPTable.Designer.ClientServerProtocol", "src\XPTable.Designer.ClientServerProtocol\XPTable.Designer.ClientServerProtocol.csproj", "{79867F90-C7AC-4AB8-8E61-7A6DAEF668C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable.Designer.Server", "src\XPTable.Designer.Server\XPTable.Designer.Server.csproj", "{88306448-F4D8-405F-90F8-0716F10EEAF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPTable.Designer.Server", "src\XPTable.Designer.Server\XPTable.Designer.Server.csproj", "{88306448-F4D8-405F-90F8-0716F10EEAF3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3FFBC9AE-235A-4377-89BD-151BCC7B9DE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable.Package", "src\XPTable.Package\XPTable.Package.csproj", "{7C94D97D-BBD0-433B-8D5E-ADAB5295E2CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPTable.Package", "src\XPTable.Package\XPTable.Package.csproj", "{7C94D97D-BBD0-433B-8D5E-ADAB5295E2CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "src\Utilities\Utilities.csproj", "{AC2C15BC-E180-465D-9650-06B3D7112274}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralNet6Example", "Samples\GeneralNet6Example\GeneralNet6Example.csproj", "{586ED7C9-AA52-4598-B274-D56159CFAD32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +55,10 @@ Global
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7D0FD08-2FDF-46D8-888D-9497751A7033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7D0FD08-2FDF-46D8-888D-9497751A7033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7D0FD08-2FDF-46D8-888D-9497751A7033}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,10 +67,6 @@ Global
 		{0B84DD04-39BB-42BC-8EA9-C927FA250F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B84DD04-39BB-42BC-8EA9-C927FA250F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B84DD04-39BB-42BC-8EA9-C927FA250F8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F124584F-9340-4129-BA17-4EEA1F3EC51D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F0A5A4EE-849A-422E-BC13-196FDC868FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F0A5A4EE-849A-422E-BC13-196FDC868FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0A5A4EE-849A-422E-BC13-196FDC868FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,15 +111,16 @@ Global
 		{7C94D97D-BBD0-433B-8D5E-ADAB5295E2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C94D97D-BBD0-433B-8D5E-ADAB5295E2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C94D97D-BBD0-433B-8D5E-ADAB5295E2CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC2C15BC-E180-465D-9650-06B3D7112274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC2C15BC-E180-465D-9650-06B3D7112274}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC2C15BC-E180-465D-9650-06B3D7112274}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC2C15BC-E180-465D-9650-06B3D7112274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{586ED7C9-AA52-4598-B274-D56159CFAD32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{586ED7C9-AA52-4598-B274-D56159CFAD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{586ED7C9-AA52-4598-B274-D56159CFAD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{586ED7C9-AA52-4598-B274-D56159CFAD32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F124584F-9340-4129-BA17-4EEA1F3EC51D} = {3FFBC9AE-235A-4377-89BD-151BCC7B9DE9}
 		{B7D0FD08-2FDF-46D8-888D-9497751A7033} = {A8C9848B-620A-48DE-8731-6F3C669884A8}
 		{0B84DD04-39BB-42BC-8EA9-C927FA250F8F} = {A8C9848B-620A-48DE-8731-6F3C669884A8}
 		{F0A5A4EE-849A-422E-BC13-196FDC868FA9} = {A8C9848B-620A-48DE-8731-6F3C669884A8}
@@ -132,6 +133,6 @@ Global
 		{6930CC70-AF27-4860-AAF3-D6A20CC5399B} = {4A839068-71AB-43C0-B09E-073F4D733731}
 		{79867F90-C7AC-4AB8-8E61-7A6DAEF668C9} = {4A839068-71AB-43C0-B09E-073F4D733731}
 		{88306448-F4D8-405F-90F8-0716F10EEAF3} = {4A839068-71AB-43C0-B09E-073F4D733731}
-		{F124584F-9340-4129-BA17-4EEA1F3EC51D} = {3FFBC9AE-235A-4377-89BD-151BCC7B9DE9}
+		{586ED7C9-AA52-4598-B274-D56159CFAD32} = {A8C9848B-620A-48DE-8731-6F3C669884A8}
 	EndGlobalSection
 EndGlobal

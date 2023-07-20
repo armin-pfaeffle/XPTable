@@ -24,16 +24,11 @@
  * OF SUCH DAMAGE.
  */
 
-using System;
-using System.Drawing;
 using System.Globalization;
-using System.Windows.Forms;
-
 using XPTable.Events;
 using XPTable.Models;
 using XPTable.Renderers;
 using XPTable.Win32;
-using System.Windows.Forms;
 
 namespace XPTable.Editors
 {
@@ -43,6 +38,7 @@ namespace XPTable.Editors
 	public class NumberCellEditor : CellEditor, IEditorUsesRendererButtons
 	{
 		#region Class Data
+
 		/// <summary>
 		/// ID number for the up button
 		/// </summary>
@@ -122,10 +118,12 @@ namespace XPTable.Editors
 		/// Timer to to fire button presses at regular intervals while 
 		/// a button is pressed
 		/// </summary>
-		private Timer timer;
+		private System.Windows.Forms.Timer timer;
+
 		#endregion
 
 		#region Events
+
 		/// <summary>
 		/// Occurs when the CellEditor is just about to change the value
 		/// </summary>
@@ -135,28 +133,30 @@ namespace XPTable.Editors
 		/// Raises the BeforeChange event
 		/// </summary>
 		/// <param name="e">A CellEditEventArgs that contains the event data</param>
-		protected virtual void OnBeforeChange(NumericCellEditEventArgs e)
+		protected virtual void OnBeforeChange( NumericCellEditEventArgs e )
 		{
-			if (this.BeforeChange != null)
-				this.BeforeChange(this, e);
+			if ( this.BeforeChange != null )
+				this.BeforeChange( this, e );
 		}
+
 		#endregion
 
 		#region Constructor
+
 		/// <summary>
 		/// Initializes a new instance of the NumberCellEditor class with default settings
 		/// </summary>
-		public NumberCellEditor()
+		public NumberCellEditor( )
 		{
-			TextBox textbox = new TextBox();
+			TextBox textbox = new TextBox( );
 			textbox.AutoSize = false;
 			textbox.BorderStyle = BorderStyle.None;
 			this.Control = textbox;
 
-			this.currentValue = new decimal(0);
-			this.increment = new decimal(1);
-			this.minimum = new decimal(0);
-			this.maximum = new decimal(100);
+			this.currentValue = new decimal( 0 );
+			this.increment = new decimal( 1 );
+			this.minimum = new decimal( 0 );
+			this.maximum = new decimal( 100 );
 			this.format = "G";
 
 			this.wheelDelta = 0;
@@ -167,6 +167,7 @@ namespace XPTable.Editors
 			this.buttonID = 0;
 			this.interval = TimerInterval;
 		}
+
 		#endregion
 
 		#region Methods
@@ -181,24 +182,24 @@ namespace XPTable.Editors
 		/// <param name="userSetEditorValues">Specifies whether the ICellEditors 
 		/// starting value has already been set by the user</param>
 		/// <returns>true if the ICellEditor can continue editing the Cell, false otherwise</returns>
-		public override bool PrepareForEditing(Cell cell, Table table, CellPos cellPos, Rectangle cellRect, bool userSetEditorValues)
+		public override bool PrepareForEditing( Cell cell, Table table, CellPos cellPos, Rectangle cellRect, bool userSetEditorValues )
 		{
 			//
-			if (!(table.ColumnModel.Columns[cellPos.Column] is NumberColumn))
+			if ( !( table.ColumnModel.Columns[cellPos.Column] is NumberColumn ) )
 			{
-				throw new InvalidOperationException("Cannot edit Cell as NumberCellEditor can only be used with a NumberColumn");
+				throw new InvalidOperationException( "Cannot edit Cell as NumberCellEditor can only be used with a NumberColumn" );
 			}
-			
-			if (!(table.ColumnModel.GetCellRenderer(cellPos.Column) is NumberCellRenderer))
+
+			if ( !( table.ColumnModel.GetCellRenderer( cellPos.Column ) is NumberCellRenderer ) )
 			{
-				throw new InvalidOperationException("Cannot edit Cell as NumberCellEditor can only be used with a NumberColumn that uses a NumberCellRenderer");
+				throw new InvalidOperationException( "Cannot edit Cell as NumberCellEditor can only be used with a NumberColumn that uses a NumberCellRenderer" );
 			}
-			
-			this.Minimum = ((NumberColumn) table.ColumnModel.Columns[cellPos.Column]).Minimum;
-			this.Maximum = ((NumberColumn) table.ColumnModel.Columns[cellPos.Column]).Maximum;
-			this.Increment = ((NumberColumn) table.ColumnModel.Columns[cellPos.Column]).Increment;
-			
-			return base.PrepareForEditing (cell, table, cellPos, cellRect, userSetEditorValues);
+
+			this.Minimum = ( ( NumberColumn ) table.ColumnModel.Columns[cellPos.Column] ).Minimum;
+			this.Maximum = ( ( NumberColumn ) table.ColumnModel.Columns[cellPos.Column] ).Maximum;
+			this.Increment = ( ( NumberColumn ) table.ColumnModel.Columns[cellPos.Column] ).Increment;
+
+			return base.PrepareForEditing( cell, table, cellPos, cellRect, userSetEditorValues );
 		}
 
 
@@ -206,13 +207,13 @@ namespace XPTable.Editors
 		/// Sets the initial value of the editor based on the contents of 
 		/// the Cell being edited
 		/// </summary>
-		protected override void SetEditValue()
+		protected override void SetEditValue( )
 		{
 			// make sure we start with a valid value
 			this.Value = this.Minimum;
 
 			// attempt to get the cells data
-			this.Value = Convert.ToDecimal(this.EditingCell.Data);
+			this.Value = Convert.ToDecimal( this.EditingCell.Data );
 		}
 
 
@@ -220,7 +221,7 @@ namespace XPTable.Editors
 		/// Sets the contents of the Cell being edited based on the value 
 		/// in the editor
 		/// </summary>
-		protected override void SetCellValue()
+		protected override void SetCellValue( )
 		{
 			this.EditingCell.Data = this.Value;
 		}
@@ -229,44 +230,44 @@ namespace XPTable.Editors
 		/// <summary>
 		/// Starts editing the Cell
 		/// </summary>
-		public override void StartEditing()
+		public override void StartEditing( )
 		{
-			this.TextBox.MouseWheel += new MouseEventHandler(OnMouseWheel);
-			this.TextBox.KeyDown += new KeyEventHandler(OnTextBoxKeyDown);
-			this.TextBox.KeyPress += new KeyPressEventHandler(OnTextBoxKeyPress);
-			this.TextBox.LostFocus += new EventHandler(OnTextBoxLostFocus);
-			
-			base.StartEditing();
+			this.TextBox.MouseWheel += new MouseEventHandler( OnMouseWheel );
+			this.TextBox.KeyDown += new KeyEventHandler( OnTextBoxKeyDown );
+			this.TextBox.KeyPress += new KeyPressEventHandler( OnTextBoxKeyPress );
+			this.TextBox.LostFocus += new EventHandler( OnTextBoxLostFocus );
 
-			this.TextBox.Focus();
+			base.StartEditing( );
+
+			this.TextBox.Focus( );
 		}
 
 
 		/// <summary>
 		/// Stops editing the Cell and commits any changes
 		/// </summary>
-		public override void StopEditing()
+		public override void StopEditing( )
 		{
-			this.TextBox.MouseWheel -= new MouseEventHandler(OnMouseWheel);
-			this.TextBox.KeyDown -= new KeyEventHandler(OnTextBoxKeyDown);
-			this.TextBox.KeyPress -= new KeyPressEventHandler(OnTextBoxKeyPress);
-			this.TextBox.LostFocus -= new EventHandler(OnTextBoxLostFocus);
-			
-			base.StopEditing();
+			this.TextBox.MouseWheel -= new MouseEventHandler( OnMouseWheel );
+			this.TextBox.KeyDown -= new KeyEventHandler( OnTextBoxKeyDown );
+			this.TextBox.KeyPress -= new KeyPressEventHandler( OnTextBoxKeyPress );
+			this.TextBox.LostFocus -= new EventHandler( OnTextBoxLostFocus );
+
+			base.StopEditing( );
 		}
 
 
 		/// <summary>
 		/// Stops editing the Cell and ignores any changes
 		/// </summary>
-		public override void CancelEditing()
+		public override void CancelEditing( )
 		{
-			this.TextBox.MouseWheel -= new MouseEventHandler(OnMouseWheel);
-			this.TextBox.KeyDown -= new KeyEventHandler(OnTextBoxKeyDown);
-			this.TextBox.KeyPress -= new KeyPressEventHandler(OnTextBoxKeyPress);
-			this.TextBox.LostFocus -= new EventHandler(OnTextBoxLostFocus);
-			
-			base.CancelEditing();
+			this.TextBox.MouseWheel -= new MouseEventHandler( OnMouseWheel );
+			this.TextBox.KeyDown -= new KeyEventHandler( OnTextBoxKeyDown );
+			this.TextBox.KeyPress -= new KeyPressEventHandler( OnTextBoxKeyPress );
+			this.TextBox.LostFocus -= new EventHandler( OnTextBoxLostFocus );
+
+			base.CancelEditing( );
 		}
 
 
@@ -275,22 +276,22 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="cellRect">A Rectangle that represents the size and location 
 		/// of the Cell being edited</param>
-		protected override void SetEditLocation(Rectangle cellRect)
+		protected override void SetEditLocation( Rectangle cellRect )
 		{
 			// calc the size of the textbox
-			ICellRenderer renderer = this.EditingTable.ColumnModel.GetCellRenderer(this.EditingCellPos.Column);
-			int buttonWidth = ((NumberCellRenderer) renderer).ButtonWidth;
+			ICellRenderer renderer = this.EditingTable.ColumnModel.GetCellRenderer( this.EditingCellPos.Column );
+			int buttonWidth = ( ( NumberCellRenderer ) renderer ).ButtonWidth;
 
-			this.TextBox.Size = new Size(cellRect.Width - 1 - buttonWidth, cellRect.Height-1);
-			
+			this.TextBox.Size = new Size( cellRect.Width - 1 - buttonWidth, cellRect.Height - 1 );
+
 			// calc the location of the textbox
 			this.TextBox.Location = cellRect.Location;
-			this.buttonBounds = new Rectangle(this.TextBox.Left + 1, this.TextBox.Top, buttonWidth, this.TextBox.Height);
+			this.buttonBounds = new Rectangle( this.TextBox.Left + 1, this.TextBox.Top, buttonWidth, this.TextBox.Height );
 
-			if (((NumberColumn) this.EditingTable.ColumnModel.Columns[this.EditingCellPos.Column]).UpDownAlign == LeftRightAlignment.Left)
+			if ( ( ( NumberColumn ) this.EditingTable.ColumnModel.Columns[this.EditingCellPos.Column] ).UpDownAlign == LeftRightAlignment.Left )
 			{
-				this.TextBox.Location = new Point(cellRect.Left + buttonWidth, cellRect.Top);
-				this.buttonBounds.Location = new Point(cellRect.Left, cellRect.Top);
+				this.TextBox.Location = new Point( cellRect.Left + buttonWidth, cellRect.Top );
+				this.buttonBounds.Location = new Point( cellRect.Left, cellRect.Top );
 			}
 		}
 
@@ -298,37 +299,37 @@ namespace XPTable.Editors
 		/// <summary>
 		/// Simulates the up button being pressed
 		/// </summary>
-		protected void UpButton()
+		protected void UpButton( )
 		{
-			if (this.UserEdit)
+			if ( this.UserEdit )
 			{
-				this.ParseEditText();
+				this.ParseEditText( );
 			}
 
 			decimal num = this.currentValue;
 
-			if (num > (new decimal(-1, -1, -1, false, 0) - this.increment))
+			if ( num > ( new decimal( -1, -1, -1, false, 0 ) - this.increment ) )
 			{
-				num = new decimal(-1, -1, -1, false, 0);
+				num = new decimal( -1, -1, -1, false, 0 );
 			}
 			else
 			{
 				num += this.increment;
 
-				if (num > this.maximum)
+				if ( num > this.maximum )
 				{
 					num = this.maximum;
 				}
 			}
 
 			//Cell source, ICellEditor editor, Table table, int row, int column, Rectangle cellRect
-			NumericCellEditEventArgs e = new NumericCellEditEventArgs(this.cell, this, this.table, this.cell.Row.Index, 
-				this.cellPos.Column, this.cellRect, this.currentValue);
+			NumericCellEditEventArgs e = new NumericCellEditEventArgs( this.cell, this, this.table, this.cell.Row.Index,
+				this.cellPos.Column, this.cellRect, this.currentValue );
 			e.NewValue = num;
 
-			OnBeforeChange(e);
+			OnBeforeChange( e );
 
-			if (!e.Cancel)
+			if ( !e.Cancel )
 				this.Value = e.NewValue;
 		}
 
@@ -336,36 +337,36 @@ namespace XPTable.Editors
 		/// <summary>
 		/// Simulates the down button being pressed
 		/// </summary>
-		protected void DownButton()
+		protected void DownButton( )
 		{
-			if (this.UserEdit)
+			if ( this.UserEdit )
 			{
-				this.ParseEditText();
+				this.ParseEditText( );
 			}
 
 			decimal num = this.currentValue;
 
-			if (num < (new decimal(-1, -1, -1, true, 0) + this.increment))
+			if ( num < ( new decimal( -1, -1, -1, true, 0 ) + this.increment ) )
 			{
-				num = new decimal(-1, -1, -1, true, 0);
+				num = new decimal( -1, -1, -1, true, 0 );
 			}
 			else
 			{
 				num -= this.increment;
 
-				if (num < this.minimum)
+				if ( num < this.minimum )
 				{
 					num = this.minimum;
 				}
 			}
 
-			NumericCellEditEventArgs e = new NumericCellEditEventArgs(this.cell, this, this.table, this.cell.Row.Index, 
-				this.cellPos.Column, this.cellRect, this.currentValue);
+			NumericCellEditEventArgs e = new NumericCellEditEventArgs( this.cell, this, this.table, this.cell.Row.Index,
+				this.cellPos.Column, this.cellRect, this.currentValue );
 			e.NewValue = num;
 
-			OnBeforeChange(e);
+			OnBeforeChange( e );
 
-			if (!e.Cancel)
+			if ( !e.Cancel )
 				this.Value = e.NewValue;
 		}
 
@@ -373,39 +374,39 @@ namespace XPTable.Editors
 		/// <summary>
 		/// Updates the editors text value to the current value
 		/// </summary>
-		protected void UpdateEditText()
+		protected void UpdateEditText( )
 		{
-			if (this.UserEdit)
+			if ( this.UserEdit )
 			{
-				this.ParseEditText();
+				this.ParseEditText( );
 			}
 
 			this.ChangingText = true;
 
-			this.Control.Text = this.currentValue.ToString(this.Format);
+			this.Control.Text = this.currentValue.ToString( this.Format );
 		}
 
 
 		/// <summary>
 		/// Checks the current value and updates the editors text value
 		/// </summary>
-		protected virtual void ValidateEditText()
+		protected virtual void ValidateEditText( )
 		{
-			this.ParseEditText();
-			this.UpdateEditText();
+			this.ParseEditText( );
+			this.UpdateEditText( );
 		}
 
 
 		/// <summary>
 		/// Converts the editors current value to a number
 		/// </summary>
-		protected void ParseEditText()
+		protected void ParseEditText( )
 		{
 			try
 			{
-				this.Value = this.Constrain(decimal.Parse(this.Control.Text));
+				this.Value = this.Constrain( decimal.Parse( this.Control.Text ) );
 			}
-			catch (Exception)
+			catch ( Exception )
 			{
 				return;
 			}
@@ -422,14 +423,14 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="value">The value to be checked</param>
 		/// <returns>A value is between the editors Maximun and Minimum values</returns>
-		private decimal Constrain(decimal value)
+		private decimal Constrain( decimal value )
 		{
-			if (value < this.minimum)
+			if ( value < this.minimum )
 			{
 				value = this.minimum;
 			}
 
-			if (value > this.maximum)
+			if ( value > this.maximum )
 			{
 				value = this.maximum;
 			}
@@ -441,29 +442,29 @@ namespace XPTable.Editors
 		/// <summary>
 		/// Starts the Timer
 		/// </summary>
-		protected void StartTimer()
+		protected void StartTimer( )
 		{
-			if (this.timer == null)
+			if ( this.timer == null )
 			{
-				this.timer = new Timer();
-				this.timer.Tick += new EventHandler(this.TimerHandler);
+				this.timer = new System.Windows.Forms.Timer( );
+				this.timer.Tick += TimerHandler;
 			}
 
 			this.interval = TimerInterval;
 			this.timer.Interval = this.interval;
-			this.timer.Start();
+			this.timer.Start( );
 		}
 
 
 		/// <summary>
 		/// Stops the Timer
 		/// </summary>
-		protected void StopTimer()
+		protected void StopTimer( )
 		{
-			if (this.timer != null)
+			if ( this.timer != null )
 			{
-				this.timer.Stop();
-				this.timer.Dispose();
+				this.timer.Stop( );
+				this.timer.Dispose( );
 				this.timer = null;
 			}
 		}
@@ -491,25 +492,25 @@ namespace XPTable.Editors
 		{
 			get
 			{
-				if (this.UserEdit)
-					this.ValidateEditText();
+				if ( this.UserEdit )
+					this.ValidateEditText( );
 
 				return this.currentValue;
 			}
 
 			set
 			{
-				if (value != this.currentValue)
+				if ( value != this.currentValue )
 				{
-					if (value < this.minimum)
+					if ( value < this.minimum )
 						value = this.minimum;
 
-					if (value > this.maximum)
+					if ( value > this.maximum )
 						value = this.maximum;
 
 					this.currentValue = value;
 
-					this.UpdateEditText();
+					this.UpdateEditText( );
 				}
 			}
 		}
@@ -527,9 +528,9 @@ namespace XPTable.Editors
 
 			set
 			{
-				if (value < new decimal(0))
+				if ( value < new decimal( 0 ) )
 				{
-					throw new ArgumentException("increment must be greater than zero");
+					throw new ArgumentException( "increment must be greater than zero" );
 				}
 
 				this.increment = value;
@@ -550,8 +551,8 @@ namespace XPTable.Editors
 			set
 			{
 				this.maximum = value;
-				
-				if (this.minimum > this.maximum)
+
+				if ( this.minimum > this.maximum )
 				{
 					this.minimum = this.maximum;
 				}
@@ -573,7 +574,7 @@ namespace XPTable.Editors
 			{
 				this.minimum = value;
 
-				if (this.minimum > this.maximum)
+				if ( this.minimum > this.maximum )
 				{
 					this.maximum = value;
 				}
@@ -594,14 +595,14 @@ namespace XPTable.Editors
 
 			set
 			{
-				if (value == null)
+				if ( value == null )
 				{
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException( "value" );
 				}
-				
+
 				this.format = value;
 
-				this.UpdateEditText();
+				this.UpdateEditText( );
 			}
 		}
 
@@ -658,26 +659,27 @@ namespace XPTable.Editors
 		#endregion
 
 		#region Events
+
 		/// <summary>
 		/// Handler for the editors TextBox.MouseWheel event
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">A MouseEventArgs that contains the event data</param>
-		protected internal virtual void OnMouseWheel(object sender, MouseEventArgs e)
+		protected internal virtual void OnMouseWheel( object sender, MouseEventArgs e )
 		{
 			bool up = true;
 
 			this.wheelDelta += e.Delta;
 
-			if (Math.Abs(this.wheelDelta) >= 120)
+			if ( Math.Abs( this.wheelDelta ) >= 120 )
 			{
-				if (this.wheelDelta < 0)
+				if ( this.wheelDelta < 0 )
 					up = false;
 
-				if (up)
-					this.UpButton();
+				if ( up )
+					this.UpButton( );
 				else
-					this.DownButton();
+					this.DownButton( );
 
 				this.wheelDelta = 0;
 			}
@@ -688,26 +690,26 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">A KeyEventArgs that contains the event data</param>
-		protected virtual void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+		protected virtual void OnTextBoxKeyDown( object sender, KeyEventArgs e )
 		{
-			if (this.interceptArrowKeys)
+			if ( this.interceptArrowKeys )
 			{
-				if (e.KeyData == Keys.Up)
+				if ( e.KeyData == Keys.Up )
 				{
-					this.UpButton();
+					this.UpButton( );
 
 					e.Handled = true;
 				}
-				else if (e.KeyData == Keys.Down)
+				else if ( e.KeyData == Keys.Down )
 				{
-					this.DownButton();
+					this.DownButton( );
 
 					e.Handled = true;
 				}
 			}
 
-			if (e.KeyCode == Keys.Return)
-				this.ValidateEditText();
+			if ( e.KeyCode == Keys.Return )
+				this.ValidateEditText( );
 		}
 
 		/// <summary>
@@ -715,49 +717,49 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">A KeyPressEventArgs that contains the event data</param>
-		protected virtual void OnTextBoxKeyPress(object sender, KeyPressEventArgs e)
+		protected virtual void OnTextBoxKeyPress( object sender, KeyPressEventArgs e )
 		{
 			char enter = AsciiChars.CarriageReturn;
 			char escape = AsciiChars.Escape;
 			char tab = AsciiChars.HorizontalTab;
 			// netus fix by Richard Sadler on 2006-01-13 - added backspace key
 			char backspace = AsciiChars.Backspace;
-			
+
 			NumberFormatInfo info = CultureInfo.CurrentCulture.NumberFormat;
-			
+
 			string decimalSeparator = info.NumberDecimalSeparator;
 			string groupSeparator = info.NumberGroupSeparator;
 			string negativeSign = info.NegativeSign;
-			string character = e.KeyChar.ToString();
+			string character = e.KeyChar.ToString( );
 
 			// netus fix by Richard Sadler on 2006-01-13 - added backspace key
-            if ((!char.IsDigit(e.KeyChar) && !character.Equals(decimalSeparator) && !character.Equals(groupSeparator)) &&
-                !character.Equals(negativeSign) && (e.KeyChar != tab) && (e.KeyChar != backspace))
-            {
-                if ((Control.ModifierKeys & (Keys.Alt | Keys.Control)) == Keys.None)
-                {
-                    e.Handled = true;
+			if ( ( !char.IsDigit( e.KeyChar ) && !character.Equals( decimalSeparator ) && !character.Equals( groupSeparator ) ) &&
+				 !character.Equals( negativeSign ) && ( e.KeyChar != tab ) && ( e.KeyChar != backspace ) )
+			{
+				if ( ( Control.ModifierKeys & ( Keys.Alt | Keys.Control ) ) == Keys.None )
+				{
+					e.Handled = true;
 
-                    if (e.KeyChar == enter)
-                    {
-                        if (this.EditingTable != null)
-                            this.EditingTable.StopEditing();
-                    }
-                    else if (e.KeyChar == escape)
-                    {
-                        if (this.EditingTable != null)
-                            this.EditingTable.CancelEditing();
-                    }
-                    else
-                    {
-                        NativeMethods.MessageBeep(0 /*MB_OK*/);
-                    }
-                }
-            }
-            else
-            {
-                this.userEdit = true;
-            }
+					if ( e.KeyChar == enter )
+					{
+						if ( this.EditingTable != null )
+							this.EditingTable.StopEditing( );
+					}
+					else if ( e.KeyChar == escape )
+					{
+						if ( this.EditingTable != null )
+							this.EditingTable.CancelEditing( );
+					}
+					else
+					{
+						NativeMethods.MessageBeep( 0 /*MB_OK*/ );
+					}
+				}
+			}
+			else
+			{
+				this.userEdit = true;
+			}
 		}
 
 		/// <summary>
@@ -765,13 +767,13 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">An EventArgs that contains the event data</param>
-		protected virtual void OnTextBoxLostFocus(object sender, EventArgs e)
+		protected virtual void OnTextBoxLostFocus( object sender, EventArgs e )
 		{
-			if (this.UserEdit)
-				this.ValidateEditText();
+			if ( this.UserEdit )
+				this.ValidateEditText( );
 
-			if (this.EditingTable != null)
-				this.EditingTable.StopEditing();
+			if ( this.EditingTable != null )
+				this.EditingTable.StopEditing( );
 		}
 
 		/// <summary>
@@ -779,24 +781,24 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">A CellMouseEventArgs that contains the event data</param>
-		public void OnEditorButtonMouseDown(object sender, CellMouseEventArgs e)
+		public void OnEditorButtonMouseDown( object sender, CellMouseEventArgs e )
 		{
-			this.ParseEditText();
+			this.ParseEditText( );
 
-			if (e.Y < this.buttonBounds.Top + (this.buttonBounds.Height / 2))
+			if ( e.Y < this.buttonBounds.Top + ( this.buttonBounds.Height / 2 ) )
 			{
 				this.buttonID = UpButtonID;
-				
-				this.UpButton();
+
+				this.UpButton( );
 			}
 			else
 			{
 				this.buttonID = DownButtonID;
-				
-				this.DownButton();
+
+				this.DownButton( );
 			}
 
-			this.StartTimer();
+			this.StartTimer( );
 		}
 
 		/// <summary>
@@ -804,9 +806,9 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">A CellMouseEventArgs that contains the event data</param>
-		public void OnEditorButtonMouseUp(object sender, CellMouseEventArgs e)
+		public void OnEditorButtonMouseUp( object sender, CellMouseEventArgs e )
 		{
-			this.StopTimer();
+			this.StopTimer( );
 
 			this.buttonID = 0;
 		}
@@ -816,28 +818,29 @@ namespace XPTable.Editors
 		/// </summary>
 		/// <param name="sender">The object that raised the event</param>
 		/// <param name="e">An EventArgs that contains the event data</param>
-		private void TimerHandler(object sender, EventArgs e)
+		private void TimerHandler( object? sender, EventArgs e )
 		{
-			if (buttonID == 0)
+			if ( buttonID == 0 )
 			{
-				this.StopTimer();
+				this.StopTimer( );
 
 				return;
 			}
 
-			if (buttonID == UpButtonID)
-				this.UpButton();
+			if ( buttonID == UpButtonID )
+				this.UpButton( );
 			else
-				this.DownButton();
-				
+				this.DownButton( );
+
 			this.interval *= 7;
 			this.interval /= 10;
-			
-			if (this.interval < 1)
+
+			if ( this.interval < 1 )
 				this.interval = 1;
-			
+
 			this.timer.Interval = this.interval;
 		}
+
 		#endregion
 	}
 }

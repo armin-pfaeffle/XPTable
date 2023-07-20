@@ -10,13 +10,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0"/>
+        <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\XPTable\XPTable.csproj"/>
-        <ProjectReference Include="..\XPTable.Designer.ClientServerProtocol\XPTable.Designer.ClientServerProtocol.csproj"/>
-        <ProjectReference Include="..\Utilities\Utilities.csproj"/>
+        <ProjectReference Include="..\XPTable\XPTable.csproj" />
+        <ProjectReference Include="..\XPTable.Designer.ClientServerProtocol\XPTable.Designer.ClientServerProtocol.csproj" />
     </ItemGroup>
 
 </Project>

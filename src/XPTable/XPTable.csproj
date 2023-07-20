@@ -43,12 +43,8 @@
         <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0" />
     </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\Utilities\Utilities.csproj" />
-    </ItemGroup>
-
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec Command="$(ProjectDir)createGitStatus.bat $(ProjectDir)\gitStatus.txt $(ProjectDir)\AssemblyInfo.githash.cs" />
+<!--        TODO: Re-enable <Exec Command="$(ProjectDir)createGitStatus.bat $(ProjectDir)\gitStatus.txt $(ProjectDir)\AssemblyInfo.githash.cs" />-->
     </Target>
 
 </Project>

@@ -1,5 +1,5 @@
 using Microsoft.DotNet.DesignTools.Editors;
-using Utilities;
+using System.Diagnostics;
 using XPTable.Designer.ClientServerProtocol;
 
 namespace XPTable.Designer.Server.ColumnCollectionEditor;
@@ -11,7 +11,8 @@ public partial class ColumnCollectionEditor
 	{
 		protected override ColumnCollectionEditor CreateCollectionEditor( IServiceProvider serviceProvider, Type collectionType )
 		{
-			Logger.Log( "ColumnCollectionEditor.Factory.CreateCollectionEditor" );
+			Debug.WriteLine( "ColumnCollectionEditor.Factory.CreateCollectionEditor" );
+
 			return new ColumnCollectionEditor( serviceProvider, collectionType );
 		}
 	}

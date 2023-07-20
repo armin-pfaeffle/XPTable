@@ -2529,7 +2529,7 @@ namespace XPTable.Models
 
                 this.PerformLayout();
 
-                this.ColumnModel.Columns.RecalcWidthCache();
+                this.ColumnModel.Columns.RecalculateWidthCache();
 
                 if (this.EnableWordWrap)
                 {
