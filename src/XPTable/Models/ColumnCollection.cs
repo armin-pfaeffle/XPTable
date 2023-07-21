@@ -135,9 +135,9 @@ public class ColumnCollection : Collection<Column>
 	/// Removes the specified Column from the model
 	/// </summary>
 	/// <param name="column">The Column to remove</param>
-	public void Remove(Column column)
+	public void Remove( Column column )
 	{
-		int columnIndex = IndexOf(column);
+		int columnIndex = IndexOf( column );
 
 		if ( columnIndex != -1 )
 		{
@@ -216,7 +216,7 @@ public class ColumnCollection : Collection<Column>
 			{
 				continue;
 			}
-			
+
 			var cell = _owner.Table.TableModel.Rows[i].Cells[index];
 
 			if ( cell.RendererData is not Renderers.ControlRendererData data )
@@ -240,7 +240,25 @@ public class ColumnCollection : Collection<Column>
 	{
 		for ( var i = 0; i < Count; i++ )
 		{
-			if ( this[i].Text == name )
+			if ( this[i].Name == name )
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <summary>
+	/// Returns the index of the Column that has the specified text
+	/// </summary>
+	/// <param name="text">The text.</param>
+	/// <returns></returns>
+	public int IndexOfText( string text )
+	{
+		for ( var i = 0; i < this.Count; i++ )
+		{
+			if ( this[i].Text == text )
 			{
 				return i;
 			}

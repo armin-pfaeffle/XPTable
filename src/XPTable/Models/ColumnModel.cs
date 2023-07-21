@@ -618,8 +618,6 @@ namespace XPTable.Models
 		{
 			get
 			{
-				Debug.WriteLine( "Call Columns property" );
-
 				if ( this.columns == null )
 					this.columns = new ColumnCollection( this );
 

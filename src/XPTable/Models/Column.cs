@@ -24,7 +24,9 @@
  * OF SUCH DAMAGE.
  */
 
+using Microsoft.DotNet.DesignTools.Serialization;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using XPTable.Editors;
 using XPTable.Events;
 using XPTable.Filters;
@@ -37,6 +39,7 @@ namespace XPTable.Models
 	/// </summary>
 	[DesignTimeVisible( false )]
 	[ToolboxItem( false )]
+	[DesignerSerializer( "XPTable.Designer.Server.ColumnCodeDomSerializer", typeof( CodeDomSerializer ) )]
 	public abstract class Column : Component
 	{
 		#region Event Handlers
@@ -94,6 +97,11 @@ namespace XPTable.Models
 		/// The text displayed in the Column's header
 		/// </summary>
 		private string text;
+
+		/// <summary>
+		/// The name of the column. 
+		/// </summary>
+		private string name;
 
 		/// <summary>
 		/// A string that specifies how a Column's Cell contents are formatted
@@ -191,6 +199,7 @@ namespace XPTable.Models
 		{
 			this.Init( );
 			this.text = text;
+			this.name = text;
 		}
 
 		/// <summary>
@@ -203,6 +212,7 @@ namespace XPTable.Models
 			this.Init( );
 
 			this.text = text;
+			this.name = text;
 			this.width = width;
 		}
 
@@ -217,6 +227,7 @@ namespace XPTable.Models
 			this.Init( );
 
 			this.text = text;
+			this.name = text;
 			this.width = width;
 			this.Visible = visible;
 		}
@@ -231,6 +242,7 @@ namespace XPTable.Models
 			this.Init( );
 
 			this.text = text;
+			this.name = text;
 			this.image = image;
 		}
 
@@ -245,6 +257,7 @@ namespace XPTable.Models
 			this.Init( );
 
 			this.text = text;
+			this.name = text;
 			this.image = image;
 			this.width = width;
 		}
@@ -261,6 +274,7 @@ namespace XPTable.Models
 			this.Init( );
 
 			this.text = text;
+			this.name = text;
 			this.image = image;
 			this.width = width;
 			this.Visible = visible;
@@ -272,6 +286,7 @@ namespace XPTable.Models
 		private void Init( )
 		{
 			this.text = null;
+			this.name = null;
 			this.width = Column.DefaultWidth;
 			this.columnState = ColumnState.Normal;
 			this.alignment = ColumnAlignment.Left;
@@ -354,6 +369,22 @@ namespace XPTable.Models
 		#endregion
 
 		#region Properties
+
+		/// <summary>
+		/// Gets or sets the name of the column
+		/// </summary>
+		/// <remarks>
+		/// The name is usually set automatically by designer generated code
+		/// </remarks>
+		[Description( "The name of the column." ),
+		 Localizable( false ),
+		 Browsable( false ),
+		 DesignerSerializationVisibility( DesignerSerializationVisibility.Hidden )]
+		public string Name
+		{
+			get { return this.name; }
+			set { this.name = value; }
+		}
 
 		/// <summary>
 		/// Gets or sets the text displayed on the Column header
