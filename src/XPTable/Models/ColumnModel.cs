@@ -25,7 +25,6 @@
  */
 
 using System.ComponentModel;
-using System.Diagnostics;
 using XPTable.Editors;
 using XPTable.Events;
 using XPTable.Renderers;
