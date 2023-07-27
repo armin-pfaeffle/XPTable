@@ -78,10 +78,21 @@ namespace XPTable.Sorting
                 retVal = 1;
             }
 
+            // If text is a number, try number sorting
+            if (int.TryParse(cell1.Text, out int cell1Data) && int.TryParse(cell2.Text, out int cell2Data))
+            {
+                var cell1Comparable = cell1Data as IComparable;
+                var cell2Comparable = cell2Data as IComparable;
+
+                if (retVal == 0 && cell1Comparable != null && cell2Comparable != null)
+                {
+                    return cell1Comparable.CompareTo(cell2Comparable);
+                }
+            }
             // if the cells have the same checked value and the CheckBoxColumn 
             // they belong to allows text drawing, compare the text properties 
             // to determine order
-            if (retVal == 0 && ((CheckBoxColumn)this.TableModel.Table.ColumnModel.Columns[this.SortColumn]).DrawText)
+            else if (retVal == 0 && ((CheckBoxColumn)this.TableModel.Table.ColumnModel.Columns[this.SortColumn]).DrawText)
             {
                 // check for null data
                 if (cell1.Text == null && cell2.Text == null)
