@@ -874,7 +874,6 @@ namespace XPTable.Models
 
 			//
 			this.gridLines = GridLines.None;
-			;
 			this.gridColor = SystemColors.Control;
 			this.gridLineStyle = GridLineStyle.Solid;
 
@@ -6827,9 +6826,7 @@ namespace XPTable.Models
 						if ( this.RowCount > 0 )
 						{
 							int i = GetNewIndexFromPageUp( );
-							;
 							CellPos temp = new CellPos( i, this.FocusedCell.Column );
-							;
 							CellPos nextCell = this.FindNextVisibleCell( temp, true, false, true, false, true );
 
 							if ( nextCell != CellPos.Empty )
@@ -6848,7 +6845,6 @@ namespace XPTable.Models
 						if ( this.RowCount > 0 )
 						{
 							int i = GetNewIndexFromPageDown( );
-							;
 							CellPos temp = new CellPos( i, this.FocusedCell.Column );
 							CellPos nextCell = this.FindNextVisibleCell( temp, true, false, true, false, true );
 
@@ -8239,7 +8235,7 @@ namespace XPTable.Models
 				}
 			}
 
-			if ( column < currentRow.Cells.Count )
+            if (currentRow?.Cells != null && column < currentRow.Cells.Count)
 			{
 				// is the cell selected
 				bool isSelected = false;
@@ -8257,12 +8253,10 @@ namespace XPTable.Models
 							isSelected = true;
 						}
 					}
-					else if ( this.SelectionStyle == SelectionStyle.Grid )
+                    else if (this.SelectionStyle == SelectionStyle.Grid &&
+                             this.TableModel.Selections.IsCellSelected(row, column))
 					{
-						if ( this.TableModel.Selections.IsCellSelected( row, column ) )
-						{
-							isSelected = true;
-						}
+						isSelected = true;
 					}
 				}
 
@@ -8880,7 +8874,8 @@ namespace XPTable.Models
 
 			IRowFilter rowFilter = this.GetRowFilter( );
 
-			for ( int i = this.TopIndex; i < this.TableModel.Rows.Count; i++ )
+			var index = this.TopIndex >= 0 ? this.TopIndex : 0;
+			for ( int i = index; i < this.TableModel.Rows.Count; i++ )
 			{
 				Row row = this.TableModel.Rows[i];
 				if ( row == null )
