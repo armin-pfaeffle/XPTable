@@ -1,21 +1,23 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>XPTable</id>
-    <title>XPTable - .NET ListView meets Java's JTable</title>
+    <id>XPTable.Net</id>
+    <title>XPTable.Net - .NET ListView meets Java's JTable</title>
     <version>$version$</version>
-    <authors>Hall, adambl, adarmus, lanwin, peyn, schoetbi, Jeoffman</authors>
+    <authors>Hall, adambl, adarmus, lanwin, peyn, schoetbi, Jeoffman, armin.pfaeffle</authors>
     <owners>Jeoffman</owners>
-    <projectUrl>https://github.com/schoetbi/XPTable</projectUrl>
+    <projectUrl>https://github.com/armin.pfaeffle/XPTable.Net</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/schoetbi/XPTable/master/Resources/XPTable32x32.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>XP Table: Created by Mathew Hall (CodeProject), updated by adambl, at sourceforge (adarmus, lanwin, peyn), schoetbi on GitHub, and Jeoffman</description>
+    <description>XP Table: Created by Mathew Hall (CodeProject), updated by adambl, at sourceforge (adarmus, lanwin, peyn), schoetbi on GitHub, and Jeoffman, migrated for .Net by armin.pfaeffle</description>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Design" />
       <frameworkAssembly assemblyName="System.Drawing" />
       <frameworkAssembly assemblyName="System.Windows.Forms" />
     </frameworkAssemblies>
     <releaseNotes>
+      **Ver 6.0.0 = Migrated to .Net 6; added minor bugfixes
+      **Ver 1.6.1 = Minor bugfixes
       **Ver 1.6.0 = Merging to the schoetbi branch of XPTable on GitHub
       **Ver 1.5.4 = Nailed a nasty bug in renderer - causes Visual Studio (2015 at least) Designer to sometimes not load Forms with XPTable in them
       **Ver 1.5.3 = Back to .NET 2.0, trying to keep sync'd with schoetbi as of 11/16/2015

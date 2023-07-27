@@ -4314,6 +4314,53 @@
             <param name="row"></param>
             <returns></returns>
         </member>
+        <member name="T:XPTable.Filters.ITextColumnFilterDialog">
+            <summary>
+            Implemented by Forms that can be used by TextColumnFilter
+            </summary>
+        </member>
+        <member name="M:XPTable.Filters.ITextColumnFilterDialog.AddItem(System.String,System.Boolean)">
+            <summary>
+            Adds an item to the list
+            </summary>
+            <param name="item"></param>
+            <param name="isChecked"></param>
+        </member>
+        <member name="M:XPTable.Filters.ITextColumnFilterDialog.GetCheckedItems">
+            <summary>
+            Returns all items that are checked
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XPTable.Filters.ITextColumnFilterDialog.AnyUncheckedItems">
+            <summary>
+            Returns true if there are any items that are not checked
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:XPTable.Filters.ITextColumnFilterDialog.StartPosition">
+            <!-- Der enthaltene XML-Abschnitt konnte nur teilweise oder gar nicht eingefügt werden. --><include file="doc\Form.uex" path="docs/doc[@for=&quot;Form.StartPosition&quot;]/*" />
+            <devdoc> 
+               <para>
+                  Gets or sets the 
+                  starting position of the form at run time. 
+               </para>
+            </devdoc> 
+        </member>
+        <member name="P:XPTable.Filters.ITextColumnFilterDialog.Location">
+            <!-- Der enthaltene XML-Abschnitt konnte nur teilweise oder gar nicht eingefügt werden. --><include file="doc\Form.uex" path="docs/doc[@for=&quot;Form.Location&quot;]/*" />
+            <devdoc> 
+               <para> 
+                  Gets or sets the location of the form.
+               </para> 
+            </devdoc>
+        </member>
+        <member name="M:XPTable.Filters.ITextColumnFilterDialog.ShowDialog">
+            <!-- Der enthaltene XML-Abschnitt konnte nur teilweise oder gar nicht eingefügt werden. --><include file="doc\Form.uex" path="docs/doc[@for=&quot;Form.ShowDialog&quot;]/*" />
+            <devdoc>
+               <para>Displays this form as a modal dialog box with no owner window.</para> 
+            </devdoc>
+        </member>
         <member name="T:XPTable.Filters.RowFilter">
             <summary>
             Implementation of IRowFilter that filters rows based on a collection of IColumnFilters.
@@ -4369,6 +4416,12 @@
             Called when the filter button is clicked on this column
             </summary>
             <param name="e"></param>
+        </member>
+        <member name="M:XPTable.Filters.TextColumnFilter.CreateFilterDialog">
+            <summary>
+            Create the dialog that shows the filter items. This must be a Form that also implements ITextColumnFilterDialog
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:XPTable.Filters.TextColumnFilter.GetDistinctItems(XPTable.Models.Table,System.Int32)">
             <summary>
@@ -5879,6 +5932,11 @@
             The text displayed in the Column's header
             </summary>
         </member>
+        <member name="F:XPTable.Models.Column.name">
+            <summary>
+            The name of the column. 
+            </summary>
+        </member>
         <member name="F:XPTable.Models.Column.format">
             <summary>
             A string that specifies how a Column's Cell contents are formatted
@@ -6055,6 +6113,14 @@
             </summary>
             <param name="flag">A flag that represents the state to be set</param>
             <param name="value">The new value of the state</param>
+        </member>
+        <member name="P:XPTable.Models.Column.Name">
+            <summary>
+            Gets or sets the name of the column
+            </summary>
+            <remarks>
+            The name is usually set automatically by designer generated code
+            </remarks>
         </member>
         <member name="P:XPTable.Models.Column.Text">
             <summary>
@@ -6392,6 +6458,13 @@
             Returns the index of the named Column in the model
             </summary>
             <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XPTable.Models.ColumnCollection.IndexOfText(System.String)">
+            <summary>
+            Returns the index of the Column that has the specified text
+            </summary>
+            <param name="text">The text.</param>
             <returns></returns>
         </member>
         <member name="M:XPTable.Models.ColumnCollection.RecalculateWidthCache">
