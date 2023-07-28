@@ -8018,8 +8018,6 @@ namespace XPTable.Models
 		/// <param name="e">A PaintEventArgs that contains the event data</param>
 		protected override void OnPaint( PaintEventArgs e )
 		{
-			Debug.WriteLine( "OnPaint");
-			
 			// call baseclass
 			base.OnPaint( e );
 
@@ -8238,7 +8236,7 @@ namespace XPTable.Models
 				}
 			}
 
-            if (currentRow?.Cells != null && column < currentRow.Cells.Count)
+			if ( currentRow?.Cells != null && column < currentRow.Cells.Count )
 			{
 				// is the cell selected
 				bool isSelected = false;
@@ -8256,8 +8254,8 @@ namespace XPTable.Models
 							isSelected = true;
 						}
 					}
-                    else if (this.SelectionStyle == SelectionStyle.Grid &&
-                             this.TableModel.Selections.IsCellSelected(row, column))
+					else if ( this.SelectionStyle == SelectionStyle.Grid &&
+							  this.TableModel.Selections.IsCellSelected( row, column ) )
 					{
 						isSelected = true;
 					}
