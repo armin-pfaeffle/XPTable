@@ -21,22 +21,12 @@
 
     <ItemGroup>
         <None Remove="gitStatus.txt" />
-        <None Remove="Models\ColumnModel.bmp" />
-        <None Remove="Models\Table.bmp" />
-        <None Remove="Models\TableModel.bmp" />
-        <None Remove="Resources\XPTable32x32.png" />
-        <None Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="Resources\XPTable32x32.png" />
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="Models\ColumnModel.bmp" />
         <EmbeddedResource Include="Models\Table.bmp" />
         <EmbeddedResource Include="Models\TableModel.bmp" />
-        <EmbeddedResource Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>

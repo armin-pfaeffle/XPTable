@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="XPTable.Debug" Version="1.237.280651" />
+    <PackageReference Include="XPTable.Debug" Version="1.237.281028" />
   </ItemGroup>
 
 </Project>

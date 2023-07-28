@@ -1,13 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <!--        TODO: Is there a min windows version? -->
-        <!--        <TFmWinVer>7.0</TFmWinVer>-->
-        <!--        <NugetTFm>net6.0-windows$(TFmWinVer);net7.0-windows$(TFmWinVer)</NugetTFm>-->
-
         <TargetFrameworkPlatformVersion>7.0</TargetFrameworkPlatformVersion>
         <NugetTargetFrameworks>net6.0-windows$(TargetFrameworkPlatformVersion);net7.0-windows$(TargetFrameworkPlatformVersion)</NugetTargetFrameworks>
         <TargetFrameworkClient>net472</TargetFrameworkClient>
-        <MajorVer>1</MajorVer>
+        <MajorVer>6</MajorVer>
         <MinorPatchVer>0</MinorPatchVer>
         <PRVer>0</PRVer>
     </PropertyGroup>
@@ -24,13 +20,13 @@
 
     <PropertyGroup>
         <Description>Description</Description>
-        <!--        <RepositoryUrl>https://github.com/kirsan31/winforms-datavisualization</RepositoryUrl>-->
-        <!--        <PackageProjectUrl>https://github.com/kirsan31/winforms-datavisualization</PackageProjectUrl>-->
-        <!--        <PackageIcon>Icon.png</PackageIcon>-->
-        <!--        <PackageReadmeFile>NuGetReadme.md</PackageReadmeFile>-->
-        <authors>TODO</authors>
+        <RepositoryUrl>https://github.com/armin-pfaeffle/XPTable.Net</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/armin-pfaeffle/XPTable.Net</PackageProjectUrl>
+        <PackageIcon>icon.png</PackageIcon>
+        <!--<PackageReadmeFile>NuGetReadme.md</PackageReadmeFile>-->
+        <authors>Hall, adambl, adarmus, lanwin, peyn, schoetbi, Jeoffman, armin.pfaeffle</authors>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>TODO</PackageTags>
+        <PackageTags>XPTable, WinForms, Windows, Forms</PackageTags>
         <PackageLicenseExpression>TODO</PackageLicenseExpression>
         <PackageReleaseNotes>$(NugetReleaseNotes)</PackageReleaseNotes>
     </PropertyGroup>
@@ -42,13 +38,13 @@
 
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
         <PackageId>XPTable</PackageId>
-        <PackageVersion>$(MajorVer).$(MinorPatchVer)$(PRVer)</PackageVersion>
+        <PackageVersion>$(MajorVer).$(MinorPatchVer).$(PRVer)</PackageVersion>
     </PropertyGroup>
 
-    <!--    <ItemGroup>-->
-    <!--        <None Include="$(SolutionDir)Icon.png" Pack="true" Visible="false" PackagePath="" />-->
-    <!--        <None Include="$(SolutionDir)NuGetReadme.md" Pack="true" Visible="false" PackagePath="" />-->
-    <!--    </ItemGroup>-->
+    <ItemGroup>
+        <None Include="$(SolutionDir)Icon.png" Pack="true" Visible="false" PackagePath=""/>
+        <!--<None Include="$(SolutionDir)NuGetReadme.md" Pack="true" Visible="false" PackagePath="" />-->
+    </ItemGroup>
 
     <Target Name="PreBuildClean" BeforeTargets="BeforeBuild">
         <Message Text="### Start clean before build..." Importance="high"/>
@@ -70,7 +66,6 @@
         <ItemGroup>
             <!-- XPTable + XPTable.Utilities -->
             <_File Include="$(XPTableBinDirectory)\XPTable.dll"/>
-            <!-- TODO: pdb Files only in Debug??? -->
             <_File Include="$(XPTableBinDirectory)\XPTable.pdb"/>
             <_File Include="$(XPTableBinDirectory)\XPTable.xml"/>
 
