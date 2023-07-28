@@ -1,6 +1,7 @@
 using Microsoft.DotNet.DesignTools.Editors;
 using System.ComponentModel;
 using System.Diagnostics;
+using XPTable.Events;
 using XPTable.Models;
 
 namespace XPTable.Designer.Server.ColumnCollectionEditor;
@@ -8,6 +9,8 @@ namespace XPTable.Designer.Server.ColumnCollectionEditor;
 public partial class ColumnCollectionEditor : CollectionEditor
 {
 	private ColumnModel? _columnModel = null;
+
+	private ColumnCollection? _columnCollection = null;
 
 	/// <summary>
 	/// Constructor
@@ -31,8 +34,10 @@ public partial class ColumnCollectionEditor : CollectionEditor
 		}
 
 		// Store access to ColumnCollection
-		// Note: Not needed ATM
-		// _columnCollection = ( ColumnCollection ) value;
+		if ( value is ColumnCollection columnCollection )
+		{
+			_columnCollection = columnCollection;
+		}
 
 		return base.BeginEditValue( context, value );
 	}
@@ -44,7 +49,7 @@ public partial class ColumnCollectionEditor : CollectionEditor
 		if ( _columnModel?.Table != null )
 		{
 			Debug.WriteLine( "ColumnCollectionEditor.EndEditValue > Update Table" );
-			
+
 			_columnModel.Table.PerformLayout( );
 			_columnModel.Table.Refresh( );
 		}
@@ -52,11 +57,9 @@ public partial class ColumnCollectionEditor : CollectionEditor
 		return base.EndEditValue( commitChange );
 	}
 
-	// TODO: Remove due to no custom code?
+	// Not used due to no custom code
 	// protected override object SetItems( object editValue, object[ ] value )
 	// {
-	// 	Debug.WriteLine( "ColumnCollectionEditor.SetItems" );
-	//
 	// 	var newCollection = base.SetItems( editValue, value );
 	//
 	// 	return newCollection;
@@ -82,7 +85,7 @@ public partial class ColumnCollectionEditor : CollectionEditor
 			typeof( NumberColumn ),
 			typeof( DoubleColumn ),
 			typeof( ProgressBarColumn ),
-			typeof( GroupColumn )
+			typeof( GroupColumn ),
 		};
 	}
 
@@ -97,6 +100,20 @@ public partial class ColumnCollectionEditor : CollectionEditor
 
 		var column = ( Column ) base.CreateInstance( itemType );
 
+		_columnCollection?.Add( column );
+
+		column.PropertyChanged += OnColumnPropertyChanged;
+
 		return column;
+	}
+
+	/// <summary>
+	/// Handler for a Column's PropertyChanged event
+	/// </summary>
+	/// <param name="sender">The object that raised the event</param>
+	/// <param name="e">A ColumnEventArgs that contains the event data</param>
+	private void OnColumnPropertyChanged( object sender, ColumnEventArgs e )
+	{
+		_columnCollection?.ColumnModel.OnColumnPropertyChanged( e );
 	}
 }

@@ -245,6 +245,26 @@ public class CellCollection : Collection<Cell>
 
 	#endregion
 
+	#region Properties
+
+	/// <summary>
+	/// Gets the Cell at the specified index
+	///
+	/// Note: In case index is out of range no exception is thrown but null is returned.
+	/// </summary>
+	public new Cell? this[ int index ]
+	{
+		get
+		{
+			if ( index < 0 || index >= this.Count )
+				return null;
+
+			return base[index];
+		}
+	}
+	
+	#endregion
+
 
 	#region Events
 

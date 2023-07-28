@@ -9,6 +9,8 @@ public partial class CellCollectionEditor : CollectionEditor
 {
 	private Row? _row = null;
 
+	private CellCollection? _cellCollection = null;
+
 	/// <summary>
 	/// Constructor
 	/// </summary>
@@ -31,8 +33,10 @@ public partial class CellCollectionEditor : CollectionEditor
 		}
 
 		// Store access to CellCollection
-		// Note: Not needed ATM
-		// _cellCollection = ( CellCollection ) value;
+		if ( value is CellCollection cellCollection )
+		{
+			_cellCollection = cellCollection;
+		}
 
 		return base.BeginEditValue( context, value );
 	}
@@ -52,15 +56,13 @@ public partial class CellCollectionEditor : CollectionEditor
 		return base.EndEditValue( commitChange );
 	}
 
-	// TODO: Remove due to no custom code?
-	protected override object SetItems( object editValue, object[ ] value )
-	{
-		Debug.WriteLine( "CellCollectionEditor.SetItems" );
-
-		var newCollection = base.SetItems( editValue, value );
-
-		return newCollection;
-	}
+	// Not used due to no custom code
+	// protected override object SetItems( object editValue, object[ ] value )
+	// {
+	// 	var newCollection = base.SetItems( editValue, value );
+	//
+	// 	return newCollection;
+	// }
 
 	/// <summary>
 	/// Creates a new instance of the specified collection item type
@@ -72,6 +74,8 @@ public partial class CellCollectionEditor : CollectionEditor
 		Debug.WriteLine( "CellCollectionEditor.CreateInstance" );
 
 		var cell = ( Cell ) base.CreateInstance( itemType );
+
+		_cellCollection?.Add( cell );
 
 		return cell;
 	}

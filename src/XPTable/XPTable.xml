@@ -5151,6 +5151,13 @@
             <param name="index">The zero-based index at which the cells should be inserted</param>
             <param name="cells">An array of Cells to be inserted into the collection</param>
         </member>
+        <member name="P:XPTable.Models.CellCollection.Item(System.Int32)">
+             <summary>
+             Gets the Cell at the specified index
+            
+             Note: In case index is out of range no exception is thrown but null is returned.
+             </summary>
+        </member>
         <member name="M:XPTable.Models.CellCollection.OnCellAdded(XPTable.Events.RowEventArgs)">
             <summary>
             Raises the CellAdded event
@@ -6471,6 +6478,13 @@
             <summary>
             Recalculates the total combined width of all columns
             </summary>
+        </member>
+        <member name="P:XPTable.Models.ColumnCollection.Item(System.Int32)">
+             <summary>
+             Gets the Column at the specified index.
+            
+             Note: In case index is out of range no exception is thrown but null is returned.
+             </summary>
         </member>
         <member name="P:XPTable.Models.ColumnCollection.Item(System.String)">
             <summary>
@@ -8839,6 +8853,13 @@
             should be inserted</param>
             <param name="rows">The array of Rows to be inserted into 
             the collection</param>
+        </member>
+        <member name="P:XPTable.Models.RowCollection.Item(System.Int32)">
+             <summary>
+             Gets the Row at the specified index
+            
+             Note: In case index is out of range no exception is thrown but null is returned.
+             </summary>
         </member>
         <member name="M:XPTable.Models.RowCollection.SetRow(System.Int32,XPTable.Models.Row)">
             <summary>

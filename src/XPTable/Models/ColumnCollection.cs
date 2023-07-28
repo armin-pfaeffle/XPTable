@@ -301,6 +301,22 @@ public class ColumnCollection : Collection<Column>
 	#region Properties
 
 	/// <summary>
+	/// Gets the Column at the specified index.
+	///
+	/// Note: In case index is out of range no exception is thrown but null is returned.
+	/// </summary>
+	public new Column? this[ int index ]
+	{
+		get
+		{
+			if ( index < 0 || index >= this.Count )
+				return null;
+
+			return base[index];
+		}
+	}
+
+	/// <summary>
 	/// Gets the Column with the specified name
 	/// </summary>
 	/// <param name="name"></param>

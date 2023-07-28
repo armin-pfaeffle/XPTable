@@ -405,6 +405,22 @@ public class RowCollection : Collection<Row>
 	#region Properties
 
 	/// <summary>
+	/// Gets the Row at the specified index
+	///
+	/// Note: In case index is out of range no exception is thrown but null is returned.
+	/// </summary>
+	public new Row? this[ int index ]
+	{
+		get
+		{
+			if ( index < 0 || index >= this.Count )
+				return null;
+
+			return base[index];
+		}
+	}
+
+	/// <summary>
 	/// Replaces the Row at the specified index to the specified Row
 	/// </summary>
 	/// <param name="index">The index of the Row to be replaced</param>
@@ -421,7 +437,7 @@ public class RowCollection : Collection<Row>
 			throw new ArgumentNullException( nameof( row ), "Row cannot be null" );
 		}
 
-		this[index] = row;
+		base[index] = row;
 
 		row.InternalIndex = index;
 	}

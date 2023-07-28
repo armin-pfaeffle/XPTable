@@ -28,6 +28,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -8017,6 +8018,8 @@ namespace XPTable.Models
 		/// <param name="e">A PaintEventArgs that contains the event data</param>
 		protected override void OnPaint( PaintEventArgs e )
 		{
+			Debug.WriteLine( "OnPaint");
+			
 			// call baseclass
 			base.OnPaint( e );
 

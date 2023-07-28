@@ -1028,7 +1028,7 @@ namespace XPTable.Models
 		/// Raises the PropertyChanged event
 		/// </summary>
 		/// <param name="e">A RowEventArgs that contains the event data</param>
-		protected virtual void OnPropertyChanged( RowEventArgs e )
+		public virtual void OnPropertyChanged( RowEventArgs e )
 		{
 			e.SetRowIndex( this.Index );
 
