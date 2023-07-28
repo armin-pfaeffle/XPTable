@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="XPTable.Debug" Version="1.237.200645" />
+    <PackageReference Include="XPTable.Debug" Version="1.237.280651" />
   </ItemGroup>
 
 </Project>
