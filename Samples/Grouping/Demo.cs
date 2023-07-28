@@ -76,12 +76,12 @@ namespace Grouping
 
             AddEmailRows(model, true, "Andy", "13/2/2007 9:45", "Work stuff", "Can you get this finished by this afternoon please? Thanks");
 
-            // Make and add the context menu:
-            ContextMenu menu = new ContextMenu();
-            MenuItem delete = new MenuItem("Delete");
+			// Make and add the context menu:
+			ContextMenuStrip menu = new ContextMenuStrip();
+			ToolStripMenuItem delete = new ToolStripMenuItem( "Delete");
             delete.Click += new EventHandler(delete_Click);
-            menu.MenuItems.Add(delete);
-            table.ContextMenu = menu;
+			menu.Items.Add( delete );
+            table.ContextMenuStrip = menu;
 
             // Add an event handler for the key event
             table.CellKeyUp += new CellKeyEventHandler(table_CellKeyUp);
@@ -236,12 +236,12 @@ namespace Grouping
             // Note that the event itself doesn't give us the cell or row
             // where it was clicked - we have to ask the Table for its SelectedRows
             // Bit of a faff to get our Table...
-            if (sender is MenuItem)
+            if (sender is ToolStripMenuItem )
             {
-                MenuItem item = (MenuItem)sender;
-                if (item.Parent is ContextMenu)
+				ToolStripMenuItem item = ( ToolStripMenuItem ) sender;
+                if (item.GetCurrentParent() is ContextMenuStrip)
                 {
-                    ContextMenu menu = (ContextMenu)item.Parent;
+					ContextMenuStrip menu = ( ContextMenuStrip ) item.GetCurrentParent( );
                     // SourceControl is automatically set to be the Table when
                     // the menu is added to the Table in Setup()
                     if (menu.SourceControl is Table)
