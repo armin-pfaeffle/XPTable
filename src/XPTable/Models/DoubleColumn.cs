@@ -184,7 +184,7 @@ namespace XPTable.Models
 		/// CellRenderer</returns>
 		public override string GetDefaultRendererName()
 		{
-			return "NUMBER";
+			return "DOUBLE";
 		}
 
 
@@ -205,7 +205,7 @@ namespace XPTable.Models
 		/// CellEditor</returns>
 		public override string GetDefaultEditorName()
 		{
-			return "NUMBER";
+			return "DOUBLE";
 		}
 
 
