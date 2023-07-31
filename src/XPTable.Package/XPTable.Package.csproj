@@ -4,7 +4,7 @@
         <NugetTargetFrameworks>net6.0-windows$(TargetFrameworkPlatformVersion);net7.0-windows$(TargetFrameworkPlatformVersion)</NugetTargetFrameworks>
         <TargetFrameworkClient>net472</TargetFrameworkClient>
         <MajorVer>6</MajorVer>
-        <MinorPatchVer>0</MinorPatchVer>
+        <MinorPatchVer>1</MinorPatchVer>
         <PRVer>0</PRVer>
     </PropertyGroup>
 
