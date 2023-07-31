@@ -32,12 +32,12 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-        <PackageId>XPTable.Debug</PackageId>
+        <PackageId>XPTable.Net.Debug</PackageId>
         <PackageVersion>$([System.DateTime]::UtcNow.ToString("$(MajorVer).yM.dHHmm"))</PackageVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
-        <PackageId>XPTable</PackageId>
+        <PackageId>XPTable.Net</PackageId>
         <PackageVersion>$(MajorVer).$(MinorPatchVer).$(PRVer)</PackageVersion>
     </PropertyGroup>
 
